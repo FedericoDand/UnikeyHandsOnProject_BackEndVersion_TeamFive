@@ -3,13 +3,14 @@ package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+
 public interface GenericService<D> {
     /**
      * ############
      * #  CREATE  #
      * ############
      */
-    D insert(D rest);
+    D insert(D dto);
 
     /**
      * ##########
@@ -24,7 +25,7 @@ public interface GenericService<D> {
      * #  UPDATE  #
      * ############
      */
-    D update(D rest) throws EntityNotFoundException;
+    D update(D dto) throws EntityNotFoundException;
 
     /**
      * ############
