@@ -47,8 +47,6 @@ public class StudentEntity {
     @NotNull
     private String password;
 
-    @Column(name="Date_of_registration",nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date dateOfRegistration;
+
 
 }

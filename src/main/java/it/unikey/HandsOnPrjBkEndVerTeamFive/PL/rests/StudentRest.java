@@ -8,4 +8,6 @@ public class StudentRest {
     private String name;
     private String lastName;
     //    private AcademyRest academy;
+    private String email;
+    private String password;
 }

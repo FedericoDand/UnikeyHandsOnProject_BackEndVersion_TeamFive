@@ -12,15 +12,15 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface TeacherRestMapper extends GenericRestMapper<TeacherDTO, TeacherRest> {
     @Override
-    TeacherDTO getDtoFromRest(TeacherRest entity);
+    TeacherDTO getDtoFromRest(TeacherRest rest);
 
     @Override
     TeacherRest getRestFromDto(TeacherDTO dto);
 
     @Override
-    List<TeacherRest> fromDtoListToRestList(List<TeacherDTO> entities);
+    List<TeacherRest> fromDtoListToRestList(List<TeacherDTO> dtos);
 
     @Override
-    List<TeacherDTO> fromRestListToDtoList(List<TeacherRest> dtos);
+    List<TeacherDTO> fromRestListToDtoList(List<TeacherRest> rests);
 
 }
