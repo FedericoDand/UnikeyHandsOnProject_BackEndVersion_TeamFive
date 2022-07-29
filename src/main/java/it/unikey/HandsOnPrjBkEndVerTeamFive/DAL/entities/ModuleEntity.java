@@ -4,8 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Entity(name = "Module")
+@Entity(name = "module")
 @Getter
 @Setter
 public class ModuleEntity {
@@ -16,5 +17,8 @@ public class ModuleEntity {
 
     @Column(nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "technology", cascade = CascadeType.ALL)
+    List<TechnologyEntity> technologies;
 
 }

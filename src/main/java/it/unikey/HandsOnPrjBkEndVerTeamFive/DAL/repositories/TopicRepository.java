@@ -1,5 +1,6 @@
 package it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories;
 
+import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.TechnologyEntity;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.TopicEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

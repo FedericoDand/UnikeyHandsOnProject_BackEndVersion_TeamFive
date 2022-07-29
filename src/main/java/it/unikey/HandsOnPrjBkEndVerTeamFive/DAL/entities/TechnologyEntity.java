@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity(name = "Technology")
+@Entity(name = "technology")
 @Getter
 @Setter
 public class TechnologyEntity {
@@ -18,7 +18,9 @@ public class TechnologyEntity {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(nullable = false)
     private ModuleEntity module;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private TechnologyEntity technology;
 
 }

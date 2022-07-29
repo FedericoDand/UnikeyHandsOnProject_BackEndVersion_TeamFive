@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "Topic")
+@Entity(name = "topic")
 @Getter
 @Setter
 public class TopicEntity {
@@ -18,7 +18,6 @@ public class TopicEntity {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
-    @Column(nullable = false)
+    @OneToMany(mappedBy = "technology", cascade = CascadeType.ALL)
     private List<TechnologyEntity> technologies;
 }
