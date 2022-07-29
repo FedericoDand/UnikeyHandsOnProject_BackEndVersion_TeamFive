@@ -1,12 +1,8 @@
 package it.unikey.HandsOnPrjBkEndVerTeamFive.PL.controllers.impl;
 
-import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.StudentDTO;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.TeacherDTO;
-import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.StudentService;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.TeacherService;
-import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.restMappers.impl.StudentRestMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.restMappers.impl.TeacherRestMapper;
-import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.rests.StudentRest;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.rests.TeacherRest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
