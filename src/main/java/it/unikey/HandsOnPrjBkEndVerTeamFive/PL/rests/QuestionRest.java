@@ -7,12 +7,12 @@ public class QuestionRest {
     private Integer id;
     private Integer difficulty;
     /*
-    private TopicDto topic;
+    private TopicRest topic;
      */
     private String text;
     private String hint;
     /*
-    private LectureNotesDto notes;
+    private LectureNotesRest notes;
      */
     private String notesSummary;
 

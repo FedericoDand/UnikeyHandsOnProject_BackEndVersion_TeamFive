@@ -27,9 +27,8 @@ public class AnswerEntity {
     @NotNull
     private Boolean isCorrect;
 
-    /*
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = QuestionEntity.class)
     private QuestionEntity question;
-     */
+
 
 }

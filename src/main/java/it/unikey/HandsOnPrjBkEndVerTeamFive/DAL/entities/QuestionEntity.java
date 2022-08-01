@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.Constraint;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Getter
 @Setter
@@ -38,8 +39,11 @@ public class QuestionEntity {
     @Column
     private String hint;
 
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    private List<AnswerEntity> answers;
+
     /*
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = fieldName, cascade = CascadeType.ALL)
     private LectureNotesEntity notes;
      */
 

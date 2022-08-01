@@ -3,7 +3,7 @@ package it.unikey.HandsOnPrjBkEndVerTeamFive.PL.controllers.concr;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.QuestionDto;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.QuestionService;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.controllers.abstr.GenericController;
-import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.restMappers.abstr.QuestionRestMapper;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.restMappers.concr.QuestionRestMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.rests.QuestionRest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/Questions")
+@RequestMapping("/questions")
 @RequiredArgsConstructor
 public class QuestionController implements GenericController<QuestionRest> {
 
@@ -31,17 +31,16 @@ public class QuestionController implements GenericController<QuestionRest> {
     @Override
     @PostMapping
     public ResponseEntity<QuestionRest> post(@RequestBody QuestionRest rest) {
-        QuestionDto saved = service.insert(restMapper.getDtoFromRest(rest));
-        return new ResponseEntity<>(restMapper.getRestFromDto(saved), HttpStatus.CREATED);
+        QuestionDto savedDto = service.insert(restMapper.getDtoFromRest(rest));
+        return new ResponseEntity<>(restMapper.getRestFromDto(savedDto), HttpStatus.CREATED);
     }
 
     @Override
     @GetMapping("/{id}")
     public ResponseEntity<QuestionRest> getById(@PathVariable Integer id) {
         try {
-            QuestionDto obtainedDto = service.getById(id);
-            QuestionRest rest = restMapper.getRestFromDto(obtainedDto);
-            return new ResponseEntity<>(rest, HttpStatus.OK);
+            QuestionDto retrievedDto = service.getById(id);
+            return new ResponseEntity<>(restMapper.getRestFromDto(retrievedDto), HttpStatus.OK);
         } catch (EntityNotFoundException ex) {
             ex.printStackTrace();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -51,8 +50,8 @@ public class QuestionController implements GenericController<QuestionRest> {
     @Override
     @GetMapping
     public ResponseEntity<List<QuestionRest>> getAll() {
-        List<QuestionDto> obtainedDtoList = service.getAll();
-        List<QuestionRest> restList = obtainedDtoList
+        List<QuestionDto> retrievedDtoList = service.getAll();
+        List<QuestionRest> restList = retrievedDtoList
                 .stream()
                 .map(restMapper::getRestFromDto)
                 .collect(Collectors.toList());
@@ -63,8 +62,8 @@ public class QuestionController implements GenericController<QuestionRest> {
     @PutMapping
     public ResponseEntity<QuestionRest> put(@RequestBody QuestionRest rest) {
         try{
-            QuestionDto saved = service.update(restMapper.getDtoFromRest(rest));
-            return new ResponseEntity<>(restMapper.getRestFromDto(saved), HttpStatus.OK);
+            QuestionDto savedDto = service.update(restMapper.getDtoFromRest(rest));
+            return new ResponseEntity<>(restMapper.getRestFromDto(savedDto), HttpStatus.OK);
         } catch (EntityNotFoundException ex) {
             ex.printStackTrace();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -90,11 +89,11 @@ public class QuestionController implements GenericController<QuestionRest> {
      * ############################
      */
 
-    @GetMapping("/subset")
+    @GetMapping("/filter")
     public ResponseEntity<List<QuestionRest>> getByDifficulty(@RequestParam("difficulty") Integer difficulty) {
         try {
-            List<QuestionDto> obtainedDtoList = service.getByDifficulty(difficulty);
-            List<QuestionRest> restList = obtainedDtoList
+            List<QuestionDto> retrievedDtoList = service.getByDifficulty(difficulty);
+            List<QuestionRest> restList = retrievedDtoList
                     .stream()
                     .map(restMapper::getRestFromDto)
                     .collect(Collectors.toList());

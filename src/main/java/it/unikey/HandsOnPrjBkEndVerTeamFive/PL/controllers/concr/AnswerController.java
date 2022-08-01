@@ -84,8 +84,22 @@ public class AnswerController implements GenericController<AnswerRest> {
 
 
     /**
-     * ########################
-     * #  ADDITIONAL METHODS  #
-     * ########################
+     * ############################
+     * #  TABLE-SPECIFIC METHODS  #
+     * ############################
      */
+    @GetMapping("/byQuestion/{questionId}")
+    public ResponseEntity<List<AnswerRest>> getByQuestionId(@PathVariable Integer questionId) {
+        try {
+            List<AnswerDto> retrievedDtoList = service.getByQuestionId(questionId);
+            List<AnswerRest> restList = retrievedDtoList
+                    .stream()
+                    .map(restMapper::getRestFromDto)
+                    .collect(Collectors.toList());
+            return new ResponseEntity<>(restList, HttpStatus.OK);
+        } catch (EntityNotFoundException ex) {
+            ex.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

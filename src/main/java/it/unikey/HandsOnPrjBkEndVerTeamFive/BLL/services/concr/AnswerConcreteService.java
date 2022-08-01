@@ -1,9 +1,11 @@
 package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.concr;
 
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.AnswerDto;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.QuestionDto;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.concr.AnswerMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.AnswerService;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.AnswerEntity;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.QuestionEntity;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories.AnswerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ public class AnswerConcreteService implements AnswerService {
     private final AnswerRepository repository;
     private final AnswerMapper mapper;
 
+
     /**
      * ################
      * #  BASIC CRUD  #
@@ -32,7 +35,9 @@ public class AnswerConcreteService implements AnswerService {
 
     @Override
     public AnswerDto getById(Integer id) throws EntityNotFoundException {
-        AnswerEntity retrievedEntity = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Not found on DB"));
+        AnswerEntity retrievedEntity = repository
+                .findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Not found on DB"));
         return mapper.getDtoFromEntity(retrievedEntity);
     }
 
@@ -67,4 +72,20 @@ public class AnswerConcreteService implements AnswerService {
      * #  SPECIFIC OPERATIONS  #
      * #########################
      */
+    @Override
+    public List<AnswerDto> getByQuestionId(Integer questionId) {
+        if(!repository.existsByQuestionId(questionId)) {
+            throw new EntityNotFoundException("Not found on DB");
+        }
+        List<AnswerEntity> entityList = repository.findByQuestionId(questionId);
+        return entityList
+                .stream()
+                .map(mapper::getDtoFromEntity)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AnswerDto> getByQuestion(QuestionDto question) {
+        return getByQuestionId(question.getId());
+    }
 }

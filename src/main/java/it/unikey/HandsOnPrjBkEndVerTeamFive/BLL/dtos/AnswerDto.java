@@ -12,9 +12,7 @@ public class AnswerDto {
     private String text;
     @NonNull
     private Boolean isCorrect;
-    /*
     @NonNull
-    private QuestionEntity question;
-     */
+    private QuestionDto question;
 
 }

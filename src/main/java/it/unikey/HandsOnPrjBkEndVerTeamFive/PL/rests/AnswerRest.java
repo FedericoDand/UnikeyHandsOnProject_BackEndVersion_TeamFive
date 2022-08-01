@@ -8,8 +8,6 @@ public class AnswerRest {
     private Integer id;
     private String text;
     private Boolean isCorrect;
-    /*
-    private QuestionEntity question;
-     */
+    private QuestionRest question;
 
 }
