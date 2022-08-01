@@ -18,7 +18,7 @@ public class ModuleEntity {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "technology", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "module", cascade = CascadeType.ALL)
     List<TechnologyEntity> technologies;
 
 }

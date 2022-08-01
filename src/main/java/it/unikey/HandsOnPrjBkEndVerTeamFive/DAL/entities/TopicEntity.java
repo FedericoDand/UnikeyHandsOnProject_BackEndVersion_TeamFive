@@ -18,6 +18,6 @@ public class TopicEntity {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "technology", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
     private List<TechnologyEntity> technologies;
 }

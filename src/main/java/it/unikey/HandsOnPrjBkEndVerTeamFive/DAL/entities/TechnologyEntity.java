@@ -21,6 +21,6 @@ public class TechnologyEntity {
     private ModuleEntity module;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private TechnologyEntity technology;
+    private TopicEntity topic;
 
 }

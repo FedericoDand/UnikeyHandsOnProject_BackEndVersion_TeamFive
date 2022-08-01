@@ -4,9 +4,6 @@ import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.TechnologyDTO;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.abstr.GenericMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.TechnologyEntity;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-
-import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface TechnologyMapper extends GenericMapper<TechnologyEntity, TechnologyDTO> {

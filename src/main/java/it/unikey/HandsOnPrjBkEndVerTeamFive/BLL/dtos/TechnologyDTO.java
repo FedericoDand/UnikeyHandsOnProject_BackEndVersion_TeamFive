@@ -10,5 +10,6 @@ public class TechnologyDTO {
     @NonNull
     private String name;
     private ModuleDTO module;
+    private TopicDTO topic;
 
 }

@@ -3,8 +3,6 @@ package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos;
 import lombok.Data;
 import lombok.NonNull;
 
-import java.util.List;
-
 @Data
 public class TopicDTO {
 
@@ -12,6 +10,4 @@ public class TopicDTO {
 
     @NonNull
     private String name;
-
-    private List<TechnologyDTO> technologies;
 }
