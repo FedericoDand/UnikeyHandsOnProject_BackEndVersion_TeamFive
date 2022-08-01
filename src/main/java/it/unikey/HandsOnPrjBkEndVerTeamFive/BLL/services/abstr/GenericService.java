@@ -3,6 +3,7 @@ package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+
 public interface GenericService<D> {
     /**
      * ############
