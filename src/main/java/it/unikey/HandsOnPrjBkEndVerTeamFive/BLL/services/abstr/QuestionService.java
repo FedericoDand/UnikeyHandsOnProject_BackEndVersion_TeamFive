@@ -1,12 +1,12 @@
 package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr;
 
-import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.QuestionDto;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.QuestionDTO;
 
 import java.util.List;
 
-public interface QuestionService extends GenericService<QuestionDto> {
+public interface QuestionService extends GenericService<QuestionDTO> {
 
-    List<QuestionDto> getByDifficulty(Integer difficulty);
+    List<QuestionDTO> getByDifficulty(Integer difficulty);
 
     /*
     List<QuestionDto> getByTopic(TopicDto topic);

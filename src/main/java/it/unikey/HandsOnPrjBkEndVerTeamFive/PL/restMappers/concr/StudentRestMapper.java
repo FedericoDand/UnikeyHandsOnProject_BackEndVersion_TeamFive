@@ -1,4 +1,4 @@
-package it.unikey.HandsOnPrjBkEndVerTeamFive.PL.restMappers.impl;
+package it.unikey.HandsOnPrjBkEndVerTeamFive.PL.restMappers.concr;
 
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.StudentDTO;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.TeacherDTO;
@@ -18,9 +18,9 @@ public interface StudentRestMapper extends GenericRestMapper<StudentDTO,StudentR
     StudentRest getRestFromDto(StudentDTO dto);
 
     @Override
-    List<StudentRest> fromDtoListToRestList(List<StudentDTO> dtos);
+    List<StudentRest> getRestListFromDtoList(List<StudentDTO> dtos);
 
     @Override
-    List<StudentDTO> fromRestListToDtoList(List<StudentRest> rests);
+    List<StudentDTO> getDtoListFromRestList(List<StudentRest> rests);
 
 }

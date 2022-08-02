@@ -6,13 +6,8 @@ public interface GenericRestMapper<D, R> {
 
     D getDtoFromRest(R rest);
     List<D> getDtoListFromRestList(List<R> rests);
-    R getRestFromDto(D dto);
-<<<<<<< HEAD
-    List<R> fromDtoListToRestList(List<D> dtos);
-    List<D> fromRestListToDtoList(List<R> rests);
 
-=======
+    R getRestFromDto(D dto);
     List<R> getRestListFromDtoList(List<D> dtos);
->>>>>>> topic-technology-module
 
 }

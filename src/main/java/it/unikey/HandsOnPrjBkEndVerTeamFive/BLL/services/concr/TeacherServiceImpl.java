@@ -1,7 +1,7 @@
-package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.impl;
+package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.concr;
 
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.TeacherDTO;
-import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.impl.TeacherDTOMapper;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.concr.TeacherDTOMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.TeacherService;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.TeacherEntity;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories.TeacherRepository;
@@ -34,7 +34,7 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public List<TeacherDTO> getAll() {
         List<TeacherEntity> entities = teacherRepository.findAll();
-        return teacherDTOMapper.fromEntityListToDtoList(entities);
+        return teacherDTOMapper.getDtoListFromEntityList(entities);
     }
 
     @Override
@@ -59,6 +59,6 @@ public class TeacherServiceImpl implements TeacherService {
     public List<TeacherDTO> getByNameAndLastName(String name, String lastName) throws EntityNotFoundException {
         if(!teacherRepository.existsTeacherEntityByNameAndLastName(name,lastName))
             throw new EntityNotFoundException("Entity not found in DB");
-        return teacherDTOMapper.fromEntityListToDtoList(teacherRepository.findTeacherEntityByNameAndLastName(name, lastName));
+        return teacherDTOMapper.getDtoListFromEntityList(teacherRepository.findTeacherEntityByNameAndLastName(name, lastName));
     }
 }

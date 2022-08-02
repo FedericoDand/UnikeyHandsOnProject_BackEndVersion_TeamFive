@@ -1,4 +1,4 @@
-package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.impl;
+package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.concr;
 
 
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.TeacherDTO;
@@ -19,9 +19,9 @@ public interface TeacherDTOMapper extends GenericMapper<TeacherEntity, TeacherDT
     TeacherEntity getEntityFromDto(TeacherDTO dto);
 
     @Override
-    List<TeacherDTO> fromEntityListToDtoList(List<TeacherEntity> entities);
+    List<TeacherDTO> getDtoListFromEntityList(List<TeacherEntity> entities);
 
     @Override
-    List<TeacherEntity> fromDtoListToEntityList(List<TeacherDTO> dtos);
+    List<TeacherEntity> getEntityListFromDtoList(List<TeacherDTO> dtos);
 
 }

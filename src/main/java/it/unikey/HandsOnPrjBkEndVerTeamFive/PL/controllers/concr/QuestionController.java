@@ -1,6 +1,6 @@
 package it.unikey.HandsOnPrjBkEndVerTeamFive.PL.controllers.concr;
 
-import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.QuestionDto;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.QuestionDTO;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.QuestionService;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.controllers.abstr.GenericController;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.restMappers.concr.QuestionRestMapper;
@@ -31,7 +31,7 @@ public class QuestionController implements GenericController<QuestionRest> {
     @Override
     @PostMapping
     public ResponseEntity<QuestionRest> post(@RequestBody QuestionRest rest) {
-        QuestionDto savedDto = service.insert(restMapper.getDtoFromRest(rest));
+        QuestionDTO savedDto = service.insert(restMapper.getDtoFromRest(rest));
         return new ResponseEntity<>(restMapper.getRestFromDto(savedDto), HttpStatus.CREATED);
     }
 
@@ -39,7 +39,7 @@ public class QuestionController implements GenericController<QuestionRest> {
     @GetMapping("/{id}")
     public ResponseEntity<QuestionRest> getById(@PathVariable Integer id) {
         try {
-            QuestionDto retrievedDto = service.getById(id);
+            QuestionDTO retrievedDto = service.getById(id);
             return new ResponseEntity<>(restMapper.getRestFromDto(retrievedDto), HttpStatus.OK);
         } catch (EntityNotFoundException ex) {
             ex.printStackTrace();
@@ -50,7 +50,7 @@ public class QuestionController implements GenericController<QuestionRest> {
     @Override
     @GetMapping
     public ResponseEntity<List<QuestionRest>> getAll() {
-        List<QuestionDto> retrievedDtoList = service.getAll();
+        List<QuestionDTO> retrievedDtoList = service.getAll();
         List<QuestionRest> restList = retrievedDtoList
                 .stream()
                 .map(restMapper::getRestFromDto)
@@ -62,7 +62,7 @@ public class QuestionController implements GenericController<QuestionRest> {
     @PutMapping
     public ResponseEntity<QuestionRest> put(@RequestBody QuestionRest rest) {
         try{
-            QuestionDto savedDto = service.update(restMapper.getDtoFromRest(rest));
+            QuestionDTO savedDto = service.update(restMapper.getDtoFromRest(rest));
             return new ResponseEntity<>(restMapper.getRestFromDto(savedDto), HttpStatus.OK);
         } catch (EntityNotFoundException ex) {
             ex.printStackTrace();
@@ -92,7 +92,7 @@ public class QuestionController implements GenericController<QuestionRest> {
     @GetMapping("/filter")
     public ResponseEntity<List<QuestionRest>> getByDifficulty(@RequestParam("difficulty") Integer difficulty) {
         try {
-            List<QuestionDto> retrievedDtoList = service.getByDifficulty(difficulty);
+            List<QuestionDTO> retrievedDtoList = service.getByDifficulty(difficulty);
             List<QuestionRest> restList = retrievedDtoList
                     .stream()
                     .map(restMapper::getRestFromDto)

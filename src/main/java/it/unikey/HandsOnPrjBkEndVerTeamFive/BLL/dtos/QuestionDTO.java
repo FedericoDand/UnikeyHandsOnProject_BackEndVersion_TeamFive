@@ -2,14 +2,9 @@ package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos;
 
 import lombok.Data;
 import lombok.NonNull;
-import org.hibernate.validator.constraints.Range;
-
-import javax.persistence.Column;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 @Data
-public class QuestionDto {
+public class QuestionDTO {
 
     private Integer id;
 

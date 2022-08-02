@@ -1,4 +1,4 @@
-package it.unikey.HandsOnPrjBkEndVerTeamFive.PL.controllers;
+package it.unikey.HandsOnPrjBkEndVerTeamFive.PL.controllers.concr;
 
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.ModuleService;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.restMappers.concr.ModuleRestMapper;

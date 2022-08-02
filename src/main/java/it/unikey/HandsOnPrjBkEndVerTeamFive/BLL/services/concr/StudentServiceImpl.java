@@ -1,7 +1,7 @@
-package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.impl;
+package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.concr;
 
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.StudentDTO;
-import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.impl.StudentDTOMapper;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.concr.StudentDTOMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.StudentService;
 
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.StudentEntity;
@@ -63,7 +63,7 @@ public class StudentServiceImpl implements StudentService {
     public List<StudentDTO> getByNameAndLastName(String name, String lastName) throws EntityNotFoundException {
         if(!studentRepository.existsStudentEntityByNameAndLastName(name,lastName))
             throw new EntityNotFoundException("Entity not found in DB");
-        return studentDTOMapper.fromEntityListToDtoList(studentRepository.findStudentEntityByNameAndLastName(name, lastName));
+        return studentDTOMapper.getDtoListFromEntityList(studentRepository.findStudentEntityByNameAndLastName(name, lastName));
     }
 
 //    @Override

@@ -1,8 +1,8 @@
-package it.unikey.HandsOnPrjBkEndVerTeamFive.PL.controllers.impl;
+package it.unikey.HandsOnPrjBkEndVerTeamFive.PL.controllers.concr;
 
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.StudentDTO;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.StudentService;
-import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.restMappers.impl.StudentRestMapper;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.restMappers.concr.StudentRestMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.rests.StudentRest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ public class StudentController {
     @GetMapping
     private ResponseEntity<List<StudentRest>> getAllStudents(){
         List<StudentDTO> students = studentService.getAll();
-        List<StudentRest> studentRests = studentRestMapper.fromDtoListToRestList(students);
+        List<StudentRest> studentRests = studentRestMapper.getRestListFromDtoList(students);
         return new ResponseEntity<>(studentRests, HttpStatus.OK);
     }
 
@@ -44,7 +44,7 @@ public class StudentController {
     private ResponseEntity<List<StudentRest>> getByNameAndLastName(@PathVariable("name") String name, @PathVariable("lastName") String lastName){
         try {
             List<StudentDTO> dtoList = studentService.getByNameAndLastName(name, lastName);
-            List<StudentRest> studentRests = studentRestMapper.fromDtoListToRestList(dtoList);
+            List<StudentRest> studentRests = studentRestMapper.getRestListFromDtoList(dtoList);
             return new ResponseEntity<>(studentRests, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             e.printStackTrace();

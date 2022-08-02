@@ -1,14 +1,14 @@
 package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr;
 
-import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.AnswerDto;
-import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.QuestionDto;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.AnswerDTO;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.QuestionDTO;
 
 import java.util.List;
 
-public interface AnswerService extends GenericService<AnswerDto> {
+public interface AnswerService extends GenericService<AnswerDTO> {
 
-    List<AnswerDto> getByQuestionId(Integer questionId);
+    List<AnswerDTO> getByQuestionId(Integer questionId);
 
-    List<AnswerDto> getByQuestion(QuestionDto question);
+    List<AnswerDTO> getByQuestion(QuestionDTO question);
 
 }

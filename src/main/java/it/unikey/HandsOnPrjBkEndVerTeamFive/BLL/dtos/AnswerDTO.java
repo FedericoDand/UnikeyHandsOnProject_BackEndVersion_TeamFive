@@ -5,7 +5,7 @@ import lombok.NonNull;
 
 
 @Data
-public class AnswerDto {
+public class AnswerDTO {
 
     private Integer id;
     @NonNull
@@ -13,6 +13,6 @@ public class AnswerDto {
     @NonNull
     private Boolean isCorrect;
     @NonNull
-    private QuestionDto question;
+    private QuestionDTO question;
 
 }
