@@ -1,11 +1,11 @@
-package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.Dto;
+package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos;
 
 import lombok.Data;
 import lombok.NonNull;
 
 @Data
 public class HandoutsDTO {
-    @NonNull
+
     private Integer id;
     @NonNull
     private String link;

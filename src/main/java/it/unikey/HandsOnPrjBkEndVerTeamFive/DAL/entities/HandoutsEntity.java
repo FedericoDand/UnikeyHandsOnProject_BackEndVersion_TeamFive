@@ -1,4 +1,4 @@
-package it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entity;
+package it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

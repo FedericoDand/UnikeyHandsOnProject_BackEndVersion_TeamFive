@@ -1,9 +1,9 @@
-package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.impl;
+package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.concr;
 
-import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.Dto.AcademyDTO;
-import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.impl.AcademyMapper;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.AcademyDTO;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.concr.AcademyMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.AcademyService;
-import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entity.AcademyEntity;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.AcademyEntity;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories.AcademyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,28 +18,28 @@ public class AcademyServiceImpl implements AcademyService {
 
     @Override
     public AcademyDTO insert(AcademyDTO dto) {
-        AcademyEntity academyToSave= mapper.fromDtoToEntity(dto);
+        AcademyEntity academyToSave= mapper.getEntityFromDto(dto);
         AcademyEntity academySaved= repository.save(academyToSave);
-        return mapper.fromEntityToDto(academySaved);
+        return mapper.getDtoFromEntity(academySaved);
     }
 
     @Override
     public AcademyDTO getById(Integer id) throws EntityNotFoundException {
     AcademyEntity academyEntity= repository.findById(id).orElseThrow(()-> new EntityNotFoundException());
 
-        return mapper.fromEntityToDto(academyEntity);
+        return mapper.getDtoFromEntity(academyEntity);
     }
 
     @Override
     public List<AcademyDTO> getAll() {
         List<AcademyEntity> academyEntityList= repository.findAll();
-        return mapper.fromEntityListToDtoList(academyEntityList);
+        return mapper.getDtoListFromEntityList(academyEntityList);
     }
 
     @Override
     public AcademyDTO update(AcademyDTO dto) throws EntityNotFoundException {
-        AcademyEntity academyEntity= repository.save(mapper.fromDtoToEntity(dto));
-        return mapper.fromEntityToDto(academyEntity);
+        AcademyEntity academyEntity= repository.save(mapper.getEntityFromDto(dto));
+        return mapper.getDtoFromEntity(academyEntity);
     }
 
     @Override

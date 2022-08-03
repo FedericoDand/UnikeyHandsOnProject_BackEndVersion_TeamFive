@@ -1,9 +1,9 @@
-package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.impl;
+package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.concr;
 
-import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.Dto.HandoutsDTO;
-import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.impl.HandoutsMapper;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.HandoutsDTO;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.concr.HandoutsMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.HandoutsService;
-import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entity.HandoutsEntity;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.HandoutsEntity;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories.HandoutsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,27 +18,27 @@ public class HandoutsServiceImpl implements HandoutsService {
 
     @Override
     public HandoutsDTO insert(HandoutsDTO dto) {
-        HandoutsEntity entityToSave= mapper.fromDtoToEntity(dto);
+        HandoutsEntity entityToSave= mapper.getEntityFromDto(dto);
         HandoutsEntity entitySaved= repository.save(entityToSave);
-        return mapper.fromEntityToDto(entitySaved);
+        return mapper.getDtoFromEntity(entitySaved);
     }
 
     @Override
     public HandoutsDTO getById(Integer id) throws EntityNotFoundException {
         HandoutsEntity handoutsEntity= repository.findById(id).orElseThrow(()->new EntityNotFoundException());
-        return mapper.fromEntityToDto(handoutsEntity);
+        return mapper.getDtoFromEntity(handoutsEntity);
     }
 
     @Override
     public List<HandoutsDTO> getAll() {
         List<HandoutsEntity> List= repository.findAll();
-        return mapper.fromEntityListToDtoList(List);
+        return mapper.getDtoListFromEntityList(List);
     }
 
     @Override
     public HandoutsDTO update(HandoutsDTO dto) throws EntityNotFoundException {
-        HandoutsEntity handoutsEntity= repository.save(mapper.fromDtoToEntity(dto));
-        return mapper.fromEntityToDto(handoutsEntity);
+        HandoutsEntity handoutsEntity= repository.save(mapper.getEntityFromDto(dto));
+        return mapper.getDtoFromEntity(handoutsEntity);
     }
 
     @Override

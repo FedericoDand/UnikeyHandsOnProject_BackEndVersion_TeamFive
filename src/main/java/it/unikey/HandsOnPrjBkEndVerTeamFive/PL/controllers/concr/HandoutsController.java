@@ -1,9 +1,9 @@
-package it.unikey.HandsOnPrjBkEndVerTeamFive.PL.controllers.imp;
+package it.unikey.HandsOnPrjBkEndVerTeamFive.PL.controllers.concr;
 
-import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.Dto.HandoutsDTO;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.HandoutsDTO;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.HandoutsService;
-import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.Mappers.impl.HandoutsRestMapper;
-import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.Rest.HandoutsRest;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.restMappers.concr.HandoutsRestMapper;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.rests.HandoutsRest;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.controllers.abstr.GenericController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/Handouts")
+@RequestMapping("/handouts")
 public class HandoutsController implements GenericController<HandoutsRest> {
 
     private final HandoutsService service;
@@ -24,8 +24,8 @@ public class HandoutsController implements GenericController<HandoutsRest> {
     @Override
     @PostMapping
     public ResponseEntity<HandoutsRest> post(@RequestBody HandoutsRest rest) {
-        HandoutsDTO handoutsDTO= service.insert(mapper.fromRestToDto(rest));
-        HandoutsRest handoutsRest= mapper.fromDtoToRest(handoutsDTO);
+        HandoutsDTO handoutsDTO= service.insert(mapper.getDtoFromRest(rest));
+        HandoutsRest handoutsRest= mapper.getRestFromDto(handoutsDTO);
         return new ResponseEntity<>(handoutsRest, HttpStatus.CREATED);
     }
 
@@ -33,7 +33,7 @@ public class HandoutsController implements GenericController<HandoutsRest> {
     @GetMapping("/{id}")
     public ResponseEntity<HandoutsRest> getById(@PathVariable Integer id) {
         HandoutsDTO handoutsDTO= service.getById(id);
-        HandoutsRest handoutsRest= mapper.fromDtoToRest(handoutsDTO);
+        HandoutsRest handoutsRest= mapper.getRestFromDto(handoutsDTO);
         return new ResponseEntity<>(handoutsRest,HttpStatus.OK);
     }
 
@@ -41,26 +41,27 @@ public class HandoutsController implements GenericController<HandoutsRest> {
     @GetMapping
     public ResponseEntity<List<HandoutsRest>> getAll() {
         List<HandoutsDTO> dtoList= service.getAll();
-        List<HandoutsRest> restList= mapper.fromDtoListToRestList(dtoList);
+        List<HandoutsRest> restList= mapper.getRestListFromDtoList(dtoList);
         return new ResponseEntity<>(restList,HttpStatus.OK);
     }
 
     @Override
     @PutMapping
     public ResponseEntity<HandoutsRest> put(@RequestBody HandoutsRest rest) {
-        HandoutsDTO handoutsDTO= service.update(mapper.fromRestToDto(rest));
-        HandoutsRest handoutsRest= mapper.fromDtoToRest(handoutsDTO);
+        HandoutsDTO handoutsDTO= service.update(mapper.getDtoFromRest(rest));
+        HandoutsRest handoutsRest= mapper.getRestFromDto(handoutsDTO);
         return new ResponseEntity<>(handoutsRest,HttpStatus.OK);
     }
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(Integer id) {
+    public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
         try{
             service.deleteById(id);
             return  new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (EntityNotFoundException e) {
-              e.printStackTrace();        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

@@ -1,8 +1,8 @@
-package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.impl;
+package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.concr;
 
-import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.Dto.AcademyDTO;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.AcademyDTO;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.abstr.GenericMapper;
-import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entity.AcademyEntity;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.AcademyEntity;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

@@ -1,4 +1,4 @@
-package it.unikey.HandsOnPrjBkEndVerTeamFive.PL.Rest;
+package it.unikey.HandsOnPrjBkEndVerTeamFive.PL.rests;
 
 import lombok.Data;
 
