@@ -11,11 +11,6 @@ import java.util.List;
 public interface AnswerRepository extends JpaRepository<AnswerEntity, Integer> {
 
     List<AnswerEntity> findByQuestionId(Integer questionId);
-
     boolean existsByQuestionId(Integer questionId);
-
-    List<AnswerEntity> findByQuestion(QuestionEntity question);
-
-
 
 }

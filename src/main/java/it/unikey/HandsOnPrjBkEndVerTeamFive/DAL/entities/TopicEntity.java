@@ -20,4 +20,8 @@ public class TopicEntity {
 
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
     private List<TechnologyEntity> technologies;
+
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
+    private List<QuestionEntity> questions;
+
 }

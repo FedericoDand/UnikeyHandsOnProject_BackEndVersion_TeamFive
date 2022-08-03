@@ -2,6 +2,8 @@ package it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
+
 @Entity(name = "Handouts")
 @Getter
 @Setter
@@ -18,5 +20,8 @@ public class HandoutsEntity {
 
   /*  @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
-    private ArgumentEntity argument;*/
+    private TopicEntity topic;*/
+
+    @OneToMany(mappedBy = "handouts", cascade = CascadeType.ALL)
+    private List<QuestionEntity> questions;
 }

@@ -5,6 +5,7 @@ import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.QuestionService;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.controllers.abstr.GenericController;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.restMappers.concr.QuestionRestMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.rests.QuestionRest;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.rests.TopicRest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -89,10 +90,25 @@ public class QuestionController implements GenericController<QuestionRest> {
      * ############################
      */
 
-    @GetMapping("/filter")
-    public ResponseEntity<List<QuestionRest>> getByDifficulty(@RequestParam("difficulty") Integer difficulty) {
+    @GetMapping("/filter/byDifficulty/{difficulty}")
+    public ResponseEntity<List<QuestionRest>> getByDifficulty(@PathVariable Integer difficulty) {
         try {
             List<QuestionDTO> retrievedDtoList = service.getByDifficulty(difficulty);
+            List<QuestionRest> restList = retrievedDtoList
+                    .stream()
+                    .map(restMapper::getRestFromDto)
+                    .collect(Collectors.toList());
+            return new ResponseEntity<>(restList, HttpStatus.OK);
+        } catch (EntityNotFoundException ex) {
+            ex.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/filter/byTopic/{topicId}")
+    public ResponseEntity<List<QuestionRest>> getByTopicId(@PathVariable Integer topicId) {
+        try {
+            List<QuestionDTO> retrievedDtoList = service.getByTopicId(topicId);
             List<QuestionRest> restList = retrievedDtoList
                     .stream()
                     .map(restMapper::getRestFromDto)

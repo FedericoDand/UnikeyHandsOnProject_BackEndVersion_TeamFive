@@ -1,6 +1,7 @@
 package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.concr;
 
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.QuestionDTO;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.TopicDTO;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.concr.QuestionMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.QuestionService;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.QuestionEntity;
@@ -80,5 +81,18 @@ public class QuestionServiceImpl implements QuestionService {
                 .stream()
                 .map(mapper::getDtoFromEntity)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<QuestionDTO> getByTopicId(Integer topicId) {
+        if(!repository.existsByTopicId(topicId)) {
+            throw new EntityNotFoundException("Not found in DB");
+        }
+        List<QuestionEntity> entityList = repository.findByTopicId(topicId);
+        return mapper.getDtoListFromEntityList(entityList);
+    }
+
+    public List<QuestionDTO> getByTopic(TopicDTO topic) {
+        return getByTopicId(topic.getId());
     }
 }

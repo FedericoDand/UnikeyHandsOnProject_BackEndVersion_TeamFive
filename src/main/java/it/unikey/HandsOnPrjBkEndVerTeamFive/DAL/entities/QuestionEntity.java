@@ -27,10 +27,9 @@ public class QuestionEntity {
     @Range(min = 1, max = 3)
     private Integer difficulty;
 
-    /*
     @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
     private TopicEntity topic;
-     */
 
     @NotNull
     @Column(nullable = false)
@@ -42,11 +41,10 @@ public class QuestionEntity {
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<AnswerEntity> answers;
 
-    /*
-    @OneToMany(mappedBy = fieldName, cascade = CascadeType.ALL)
-    private LectureNotesEntity notes;
-     */
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = HandoutsEntity.class)
+    private HandoutsEntity handouts;
 
+    @Column
     private String notesSummary;
 
 }
