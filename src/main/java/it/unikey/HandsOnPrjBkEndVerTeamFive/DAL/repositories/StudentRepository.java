@@ -14,6 +14,8 @@ public interface StudentRepository extends JpaRepository<StudentEntity,Integer> 
 
     boolean existsStudentEntityByNameAndLastName(String name, String lastName);
 
-    // List<StudentEntity> findStudentEntitiesByAcademyName(Academy name);
+    List<StudentEntity> findStudentEntitiesByAcademyName(String name);
+
+    List<StudentEntity> findStudentEntitiesByAcademyAccesCode(String access);
 
 }

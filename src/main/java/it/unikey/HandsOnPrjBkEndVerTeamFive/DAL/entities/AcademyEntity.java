@@ -22,7 +22,8 @@ public class AcademyEntity {
     @Column(nullable = false)
     @NotNull
     private String accesCode;
-   /* @OneToMany(mappedBy = "discipline", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "academy", cascade = CascadeType.ALL)
     @ToString.Exclude
-    private List<StudentEntity> students;*/
+    private List<StudentEntity> students;
 }

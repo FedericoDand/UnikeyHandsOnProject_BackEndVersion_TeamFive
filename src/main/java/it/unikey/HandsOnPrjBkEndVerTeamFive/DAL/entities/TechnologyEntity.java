@@ -1,13 +1,17 @@
 package it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "technology")
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class TechnologyEntity {
 
     @Id
@@ -18,9 +22,11 @@ public class TechnologyEntity {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private ModuleEntity module;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private TopicEntity topic;
+    @OneToMany(mappedBy = "technology", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<TopicEntity> topics;
 
 }

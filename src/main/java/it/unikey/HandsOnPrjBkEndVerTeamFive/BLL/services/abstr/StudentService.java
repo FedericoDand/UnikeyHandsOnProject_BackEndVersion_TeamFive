@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface StudentService extends GenericService<StudentDTO>{
     List<StudentDTO> getByNameAndLastName(String name, String lastName) throws EntityNotFoundException;
-//   List<StudentDTO> getListByAcademyName(Academy name) throws EntityNotFoundException;
+    List<StudentDTO> getListByAcademyName(String name) throws EntityNotFoundException;
+    List<StudentDTO> getListByAcademyAccesCode(String access) throws EntityNotFoundException;
 }

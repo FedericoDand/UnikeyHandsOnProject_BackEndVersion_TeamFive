@@ -5,6 +5,7 @@ import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.concr.StudentDTOMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.StudentService;
 
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.StudentEntity;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories.AcademyRepository;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
     private final StudentDTOMapper studentDTOMapper;
+
+    private final AcademyRepository academyRepository;
 
     @Override
     public StudentDTO insert(StudentDTO dto) {
@@ -66,8 +69,19 @@ public class StudentServiceImpl implements StudentService {
         return studentDTOMapper.getDtoListFromEntityList(studentRepository.findStudentEntityByNameAndLastName(name, lastName));
     }
 
-//    @Override
-//    public List<StudentDTO> getListByAcademyName(Academy name) throws EntityNotFoundException {
-//        return null;
-//    }
+    @Override
+    public List<StudentDTO> getListByAcademyName(String name) throws EntityNotFoundException {
+        if(!academyRepository.existsAcademyEntityByName(name))
+            throw new EntityNotFoundException("Entity not found in DB");
+        return studentDTOMapper.getDtoListFromEntityList(studentRepository.findStudentEntitiesByAcademyName(name));
+    }
+
+    @Override
+    public List<StudentDTO> getListByAcademyAccesCode(String access) throws EntityNotFoundException {
+        if(!academyRepository.existsAcademyEntityByAccesCode(access))
+            throw new EntityNotFoundException("Entity not found in DB");
+        return studentDTOMapper.getDtoListFromEntityList(studentRepository.findStudentEntitiesByAcademyAccesCode(access));
+    }
+
+
 }

@@ -7,7 +7,7 @@ public class StudentRest {
     private Integer id;
     private String name;
     private String lastName;
-    //    private AcademyRest academy;
+    private AcademyRest academy;
     private String email;
     private String password;
 }

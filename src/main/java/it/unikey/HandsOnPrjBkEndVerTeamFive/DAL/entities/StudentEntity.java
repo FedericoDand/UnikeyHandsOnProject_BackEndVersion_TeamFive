@@ -31,11 +31,11 @@ public class StudentEntity {
     @NotNull
     private String lastName;
 
-//    @Column(name="Academy_name", length=50,nullable = false)
-//    @NotNull
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @ToString.Exclude
-//    private AcademyEntity academy;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private AcademyEntity academy;
 
     @Column(name="email", length=50,nullable = false)
     @Email(message="Please provide a valid email address")

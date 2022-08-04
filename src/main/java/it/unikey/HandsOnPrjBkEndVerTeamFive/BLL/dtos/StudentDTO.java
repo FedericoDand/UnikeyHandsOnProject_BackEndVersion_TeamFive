@@ -12,7 +12,7 @@ public class StudentDTO {
     private Integer id;
     private String name;
     private String lastName;
-    //    private AcademyDTO academy;
+    private AcademyDTO academy;
     private String email;
     private String password;
 }

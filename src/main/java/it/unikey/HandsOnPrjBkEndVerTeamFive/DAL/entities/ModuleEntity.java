@@ -1,6 +1,7 @@
 package it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.List;
 @Entity(name = "module")
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class ModuleEntity {
 
     @Id

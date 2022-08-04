@@ -51,16 +51,31 @@ public class StudentController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-//
-//    @GetMapping(path = "/{academy}")
-//    private ResponseEntity<List<StudentRest>> getByAcademy(@PathVariable("academy") String academy){
-//        try {
-//            return null;
-//        } catch (EntityNotFoundException e) {
-//            e.printStackTrace();
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+
+    @GetMapping(path = "/academy_name")
+    private ResponseEntity<List<StudentRest>> getByAcademy(@RequestParam("academy_name") String academy){
+        try {
+            List<StudentDTO> dtoList = studentService.getListByAcademyName(academy);
+            List<StudentRest> studentRests = studentRestMapper.getRestListFromDtoList(dtoList);
+            return new ResponseEntity<>(studentRests, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping(path = "/academy_code")
+    private ResponseEntity<List<StudentRest>> getByAcademyAccess(@RequestParam("academy_code") String code){
+        try {
+            List<StudentDTO> dtoList = studentService.getListByAcademyAccesCode(code);
+            List<StudentRest> studentRests = studentRestMapper.getRestListFromDtoList(dtoList);
+            return new ResponseEntity<>(studentRests, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
     @PostMapping
     private ResponseEntity<StudentRest> postStudent(@RequestBody StudentRest athlete){

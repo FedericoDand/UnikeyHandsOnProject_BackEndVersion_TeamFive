@@ -13,7 +13,7 @@ public class AcademyDTO {
     private String name;
     @NonNull
     private String accesCode;
-   // private List<StudentDTO> students;
+    private List<StudentDTO> students;
 
 
 }
