@@ -1,9 +1,11 @@
 package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.concr;
 
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.StudentDTO;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.TopicDTO;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.concr.TopicMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.TopicService;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.TopicEntity;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories.TechnologyRepository;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories.TopicRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ public class TopicServiceImpl implements TopicService {
 
     private final TopicRepository topicRepository;
     private final TopicMapper topicMapper;
+    private final TechnologyRepository technologyRepository;
 
 
     @Override
@@ -56,5 +59,15 @@ public class TopicServiceImpl implements TopicService {
         if(!topicRepository.existsTopicEntitiesByName(name))
             throw new NotFoundException("Entity not found in db");
         return topicMapper.getDtoListFromEntityList(topicRepository.findTopicEntitiesByName(name));
+
+
+
+    }
+
+    @Override
+    public List<TopicDTO> getListByTechnologyName(String name) throws NotFoundException {
+        if(!technologyRepository.existsTechnologyEntitiesByName(name))
+            throw new EntityNotFoundException("Entity TECHNOLOGY not found in DB");
+        return topicMapper.getDtoListFromEntityList(topicRepository.findTopicEntitiesByTechnologyName(name));
     }
 }

@@ -8,11 +8,8 @@ import lombok.NonNull;
 public class AnswerDTO {
 
     private Integer id;
-    @NonNull
     private String text;
-    @NonNull
     private Boolean isCorrect;
-    @NonNull
     private QuestionDTO question;
 
 }

@@ -1,6 +1,9 @@
 package it.unikey.HandsOnPrjBkEndVerTeamFive.PL.rests;
 
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.AnswerDTO;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class QuestionRest {
@@ -15,5 +18,6 @@ public class QuestionRest {
     private LectureNotesRest notes;
      */
     private String notesSummary;
+    private List<AnswerRest> answers;
 
 }

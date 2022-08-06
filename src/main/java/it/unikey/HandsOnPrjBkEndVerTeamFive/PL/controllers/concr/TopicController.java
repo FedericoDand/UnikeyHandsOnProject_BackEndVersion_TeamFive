@@ -1,8 +1,11 @@
 package it.unikey.HandsOnPrjBkEndVerTeamFive.PL.controllers.concr;
 
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.TechnologyDTO;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.TopicDTO;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.TopicService;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.restMappers.concr.TopicRestMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.rests.ModuleRest;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.rests.TechnologyRest;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.PL.rests.TopicRest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -46,6 +49,19 @@ public class TopicController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping(path = "/technology")
+    private ResponseEntity<List<TopicRest>> getByAcademy(@RequestParam("technology") String name){
+        try {
+            List<TopicDTO> dtoList = topicService.getListByTechnologyName(name);
+            List<TopicRest> technologyRests = topicRestMapper.getRestListFromDtoList(dtoList);
+            return new ResponseEntity<>(technologyRests, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
     @PostMapping
     private ResponseEntity<TopicRest> postTopic(@RequestBody TopicRest topic){

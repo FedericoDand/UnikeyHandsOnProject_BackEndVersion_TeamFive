@@ -40,6 +40,7 @@ public class QuestionEntity {
     private String hint;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<AnswerEntity> answers;
 
     /*

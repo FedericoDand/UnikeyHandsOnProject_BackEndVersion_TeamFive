@@ -16,7 +16,7 @@ public interface QuestionRepository extends JpaRepository<QuestionEntity, Intege
     /*
     List<QuestionEntity> findByTopicId(Integer topicId);
 
-    List<QuestionEntity> findByTopic(Topic topic);
+    List<QuestionEntity> findByTopicName(Topic name);
      */
 
 }

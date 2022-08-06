@@ -3,6 +3,7 @@ package it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,6 +22,7 @@ public class ModuleEntity {
     private String name;
 
     @OneToMany(mappedBy = "module", cascade = CascadeType.ALL)
+    @ToString.Exclude
     List<TechnologyEntity> technologies;
 
 }

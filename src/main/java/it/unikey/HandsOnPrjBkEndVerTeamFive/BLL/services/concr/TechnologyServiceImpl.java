@@ -4,6 +4,7 @@ import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.TechnologyDTO;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.concr.TechnologyMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.TechnologyService;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.TechnologyEntity;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories.ModuleRepository;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories.TechnologyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class TechnologyServiceImpl implements TechnologyService {
 
     private final TechnologyRepository technologyRepository;
     private final TechnologyMapper technologyMapper;
-
+    private final ModuleRepository moduleRepository;
 
     @Override
     public TechnologyDTO insert(TechnologyDTO dto) {
@@ -56,5 +57,12 @@ public class TechnologyServiceImpl implements TechnologyService {
         if(!technologyRepository.existsTechnologyEntitiesByName(name))
             throw new NotFoundException("Entity not found in db");
         return technologyMapper.getDtoListFromEntityList(technologyRepository.findTechnologyEntitiesByName(name));
+    }
+
+    @Override
+    public List<TechnologyDTO> getListByModuleName(String name) throws NotFoundException {
+        if(!moduleRepository.existsModuleEntitiesByName(name))
+            throw new EntityNotFoundException("Entity MODULE not found in DB");
+        return technologyMapper.getDtoListFromEntityList(technologyRepository.findTechnologyEntitiesByModuleName(name));
     }
 }

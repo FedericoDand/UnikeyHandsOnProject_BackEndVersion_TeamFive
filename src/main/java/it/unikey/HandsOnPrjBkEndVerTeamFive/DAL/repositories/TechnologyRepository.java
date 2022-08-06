@@ -1,6 +1,6 @@
 package it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories;
 
-import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.ModuleEntity;
+
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.TechnologyEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,5 +13,6 @@ public interface TechnologyRepository extends JpaRepository<TechnologyEntity, In
     TechnologyEntity findTechnologyEntityById(Integer id);
     List<TechnologyEntity> findTechnologyEntitiesByName(String name);
     boolean existsTechnologyEntitiesByName(String name);
+    List<TechnologyEntity> findTechnologyEntitiesByModuleName(String name);
 
 }

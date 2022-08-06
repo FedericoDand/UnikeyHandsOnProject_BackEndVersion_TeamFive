@@ -1,6 +1,7 @@
 package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.concr;
 
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.ModuleDTO;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.StudentDTO;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.concr.ModuleMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.ModuleService;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.ModuleEntity;
@@ -15,10 +16,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ModuleServiceImpl implements ModuleService {
-
     private final ModuleRepository moduleRepository;
     private final ModuleMapper moduleMapper;
-
     @Override
     public ModuleDTO insert(ModuleDTO dto) {
         return moduleMapper.getDtoFromEntity(moduleRepository.save(moduleMapper.getEntityFromDto(dto)));
@@ -56,4 +55,6 @@ public class ModuleServiceImpl implements ModuleService {
             throw new NotFoundException("Entity not found in db");
         return moduleMapper.getDtoListFromEntityList(moduleRepository.findModuleEntitiesByName(name));
     }
+
+
 }

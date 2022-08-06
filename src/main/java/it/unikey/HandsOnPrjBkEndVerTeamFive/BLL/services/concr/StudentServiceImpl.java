@@ -72,14 +72,14 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<StudentDTO> getListByAcademyName(String name) throws EntityNotFoundException {
         if(!academyRepository.existsAcademyEntityByName(name))
-            throw new EntityNotFoundException("Entity not found in DB");
+            throw new EntityNotFoundException("Entity ACADEMY not found in DB");
         return studentDTOMapper.getDtoListFromEntityList(studentRepository.findStudentEntitiesByAcademyName(name));
     }
 
     @Override
     public List<StudentDTO> getListByAcademyAccesCode(String access) throws EntityNotFoundException {
         if(!academyRepository.existsAcademyEntityByAccesCode(access))
-            throw new EntityNotFoundException("Entity not found in DB");
+            throw new EntityNotFoundException("Entity ACADEMY not found in DB");
         return studentDTOMapper.getDtoListFromEntityList(studentRepository.findStudentEntitiesByAcademyAccesCode(access));
     }
 

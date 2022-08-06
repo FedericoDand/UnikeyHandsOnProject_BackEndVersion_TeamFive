@@ -14,7 +14,7 @@ public interface AnswerRepository extends JpaRepository<AnswerEntity, Integer> {
 
     boolean existsByQuestionId(Integer questionId);
 
-    List<AnswerEntity> findByQuestion(QuestionEntity question);
+    List<AnswerEntity> findByQuestion(QuestionEntity question); // not used, maybe needs to be deleted
 
 
 

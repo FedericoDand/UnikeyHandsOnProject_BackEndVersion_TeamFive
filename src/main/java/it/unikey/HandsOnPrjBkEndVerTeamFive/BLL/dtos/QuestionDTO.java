@@ -1,7 +1,10 @@
 package it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos;
 
+import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.AnswerEntity;
 import lombok.Data;
 import lombok.NonNull;
+
+import java.util.List;
 
 @Data
 public class QuestionDTO {
@@ -27,5 +30,6 @@ public class QuestionDTO {
      */
 
     private String notesSummary;
+    private List<AnswerDTO> answers;
 
 }
