@@ -5,6 +5,8 @@ import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.concr.HandoutsMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.HandoutsService;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.HandoutsEntity;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories.HandoutsRepository;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories.QuestionRepository;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories.TopicRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,10 @@ import java.util.List;
 public class HandoutsServiceImpl implements HandoutsService {
     private final HandoutsRepository repository;
     private final HandoutsMapper mapper;
+
+    private final TopicRepository topicRepository;
+
+    private final QuestionRepository questionRepository;
 
     @Override
     public HandoutsDTO insert(HandoutsDTO dto) {
@@ -46,5 +52,26 @@ public class HandoutsServiceImpl implements HandoutsService {
      if(!repository.existsById(id))
          throw new EntityNotFoundException();
      repository.deleteById(id);
+    }
+
+    @Override
+    public List<HandoutsDTO> getByTopicName(String topic) {
+        if (!topicRepository.existsTopicEntitiesByName(topic))
+            throw new EntityNotFoundException("Entity TOPIC not found in DB");
+        return mapper.getDtoListFromEntityList(repository.findByTopicName(topic));
+    }
+
+    @Override
+    public List<HandoutsDTO> getByTopicId(Integer id) {
+        if(!topicRepository.existsById(id))
+            throw new EntityNotFoundException("Entity TOPIC not found in DB");
+        return mapper.getDtoListFromEntityList(repository.findByTopicId(id));
+    }
+
+    @Override
+    public List<HandoutsDTO> getByQuestionId(Integer id) {
+            if(!questionRepository.existsById(id))
+                throw new EntityNotFoundException("Entity QUESTION not found in DB");
+        return mapper.getDtoListFromEntityList(repository.findByQuestionsId(id));
     }
 }

@@ -13,10 +13,7 @@ public interface QuestionRepository extends JpaRepository<QuestionEntity, Intege
 
     boolean existsByDifficulty(Integer difficulty);
 
-    /*
     List<QuestionEntity> findByTopicId(Integer topicId);
-
-    List<QuestionEntity> findByTopicName(Topic name);
-     */
-
+    List<QuestionEntity> findByTopicName(String name);
+    List<QuestionEntity> findByHandoutsId(Integer handsId);
 }

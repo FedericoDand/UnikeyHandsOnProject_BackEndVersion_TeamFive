@@ -51,7 +51,7 @@ public class TechnologyController {
     }
 
     @GetMapping(path = "/module")
-    private ResponseEntity<List<TechnologyRest>> getByAcademy(@RequestParam("module") String module){
+    private ResponseEntity<List<TechnologyRest>> getByModuleName(@RequestParam("module") String module){
         try {
             List<TechnologyDTO> dtoList = technologyService.getListByModuleName(module);
             List<TechnologyRest> technologyRests = technologyRestMapper.getRestListFromDtoList(dtoList);

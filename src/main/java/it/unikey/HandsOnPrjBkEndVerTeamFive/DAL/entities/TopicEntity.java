@@ -25,11 +25,11 @@ public class TopicEntity {
     @ToString.Exclude
     private TechnologyEntity technology;
 
-//    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
-//    @ToString.Exclude
-//    private List<QuestionEntity> questions;
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<QuestionEntity> questions;
 
-//    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
-//    @ToString.Exclude
-//    private List<HandoutsEntity> handouts;
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<HandoutsEntity> handouts;
 }

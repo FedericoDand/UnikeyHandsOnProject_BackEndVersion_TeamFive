@@ -12,7 +12,7 @@ public interface TechnologyRepository extends JpaRepository<TechnologyEntity, In
 
     TechnologyEntity findTechnologyEntityById(Integer id);
     List<TechnologyEntity> findTechnologyEntitiesByName(String name);
-    boolean existsTechnologyEntitiesByName(String name);
+    boolean existsTechnologyEntityByName(String name);
     List<TechnologyEntity> findTechnologyEntitiesByModuleName(String name);
 
 }

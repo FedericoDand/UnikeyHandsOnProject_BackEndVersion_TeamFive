@@ -54,7 +54,7 @@ public class TechnologyServiceImpl implements TechnologyService {
 
     @Override
     public List<TechnologyDTO> getByName(String name) throws NotFoundException {
-        if(!technologyRepository.existsTechnologyEntitiesByName(name))
+        if(!technologyRepository.existsTechnologyEntityByName(name))
             throw new NotFoundException("Entity not found in db");
         return technologyMapper.getDtoListFromEntityList(technologyRepository.findTechnologyEntitiesByName(name));
     }

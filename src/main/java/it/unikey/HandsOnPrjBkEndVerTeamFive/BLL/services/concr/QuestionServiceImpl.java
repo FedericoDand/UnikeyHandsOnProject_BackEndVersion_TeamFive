@@ -4,7 +4,9 @@ import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.QuestionDTO;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.mappers.concr.QuestionMapper;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.services.abstr.QuestionService;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities.QuestionEntity;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories.HandoutsRepository;
 import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories.QuestionRepository;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.repositories.TopicRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,10 @@ public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionRepository repository;
     private final QuestionMapper mapper;
+
+    private final TopicRepository topicRepository;
+
+    private final HandoutsRepository handoutsRepository;
 
     /**
      * ################
@@ -80,5 +86,23 @@ public class QuestionServiceImpl implements QuestionService {
                 .stream()
                 .map(mapper::getDtoFromEntity)
                 .collect(Collectors.toList());
+    }
+    @Override
+    public List<QuestionDTO> getByTopicName(String topic) {
+        if(!topicRepository.existsTopicEntitiesByName(topic))
+            throw new EntityNotFoundException("Entity TOPIC not found in DB");
+        return mapper.getDtoListFromEntityList(repository.findByTopicName(topic));
+    }
+    @Override
+    public List<QuestionDTO> getByTopicId(Integer id) {
+        if(!topicRepository.existsById(id))
+            throw new EntityNotFoundException("Entity TOPIC not found in DB");
+        return mapper.getDtoListFromEntityList(repository.findByTopicId(id));
+    }
+    @Override
+    public List<QuestionDTO> getByHandoutsId(Integer id) {
+        if(!handoutsRepository.existsById(id))
+            throw new EntityNotFoundException("Entity HANDOUTS not found in DB");
+        return mapper.getDtoListFromEntityList(repository.findByHandoutsId(id));
     }
 }

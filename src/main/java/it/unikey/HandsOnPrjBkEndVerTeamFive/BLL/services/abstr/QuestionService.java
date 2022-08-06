@@ -7,8 +7,8 @@ import java.util.List;
 public interface QuestionService extends GenericService<QuestionDTO> {
 
     List<QuestionDTO> getByDifficulty(Integer difficulty);
+    List<QuestionDTO> getByTopicName(String topic);
+    List<QuestionDTO> getByTopicId(Integer id);
+    List<QuestionDTO> getByHandoutsId(Integer id);
 
-    /*
-    List<QuestionDto> getByTopic(TopicDto topic);
-     */
 }

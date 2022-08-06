@@ -1,7 +1,11 @@
 package it.unikey.HandsOnPrjBkEndVerTeamFive.DAL.entities;
+import it.unikey.HandsOnPrjBkEndVerTeamFive.BLL.dtos.QuestionDTO;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity(name = "Handouts")
 @Getter
 @Setter
@@ -13,10 +17,13 @@ public class HandoutsEntity {
     private Integer id;
 
     @Column(nullable = false)
-    @NotNull
     private String link;
 
-  /*  @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
-    private ArgumentEntity argument;*/
+    private TopicEntity topic;
+
+    @ManyToMany()
+    @ToString.Exclude
+    private Set<QuestionEntity> questions;
 }

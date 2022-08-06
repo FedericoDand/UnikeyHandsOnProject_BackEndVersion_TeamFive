@@ -51,7 +51,7 @@ public class TopicController {
     }
 
     @GetMapping(path = "/technology")
-    private ResponseEntity<List<TopicRest>> getByAcademy(@RequestParam("technology") String name){
+    private ResponseEntity<List<TopicRest>> getByTechnology(@RequestParam("technology") String name){
         try {
             List<TopicDTO> dtoList = topicService.getListByTechnologyName(name);
             List<TopicRest> technologyRests = topicRestMapper.getRestListFromDtoList(dtoList);
@@ -90,5 +90,4 @@ public class TopicController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 }

@@ -66,7 +66,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public List<TopicDTO> getListByTechnologyName(String name) throws NotFoundException {
-        if(!technologyRepository.existsTechnologyEntitiesByName(name))
+        if(!technologyRepository.existsTechnologyEntityByName(name))
             throw new EntityNotFoundException("Entity TECHNOLOGY not found in DB");
         return topicMapper.getDtoListFromEntityList(topicRepository.findTopicEntitiesByTechnologyName(name));
     }
